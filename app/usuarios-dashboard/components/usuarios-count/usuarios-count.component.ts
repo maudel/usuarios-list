@@ -18,6 +18,6 @@ export class UsuariosCountComponent {
   items: Usuario[];
   checkedInCount(): number {
     if (!this.items) return;
-    return this.items.filter((passenger: Usuario) => passenger.checkedIn).length;
+    return this.items.filter((usuario: Usuario) => usuario.checkedIn).length;
   }
 }

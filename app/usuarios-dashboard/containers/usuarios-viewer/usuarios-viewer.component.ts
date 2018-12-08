@@ -14,7 +14,7 @@ import { Usuario } from '../../models/usuario.interface';
     <div>
       <usuarios-form
         [detail]="usuario"
-        (update)="onUpdatePassenger($event)">
+        (update)="onUpdateUsuario($event)">
       </usuarios-form>
     </div>
   `
@@ -31,9 +31,9 @@ export class UsuariosViewerComponent implements OnInit {
       .switchMap((data: Usuario) => this.usuarioService.getUsuario(data.id))
       .subscribe((data: Usuario) => this.usuario = data);
   }
-  onUpdatePassenger(event: Usuario) {
+  onUpdateUsuario(event: Usuario) {
     this.usuarioService
-      .updatePassenger(event)
+      .updateUsuario(event)
       .subscribe((data: Usuario) => {
         this.usuario = Object.assign({}, this.usuario, event);
       });

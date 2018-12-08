@@ -1,16 +1,16 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Passenger } from '../../models/usuario.interface';
-import { Baggage } from '../../models/detalle.interface';
+import { Usuario } from '../../models/usuario.interface';
+import { Detalle } from '../../models/detalle.interface';
 
 @Component({
-  selector: 'passenger-form',
-  styleUrls: ['passenger-form.component.scss'],
+  selector: 'usuario-form',
+  styleUrls: ['usuario-form.component.scss'],
   template: `
     <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
 
       <div>
-        Passenger name:
+        Usuario name:
         <input
           type="text"
           name="fullname"
@@ -18,12 +18,12 @@ import { Baggage } from '../../models/detalle.interface';
           #fullname="ngModel"
           [ngModel]="detail?.fullname">
         <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
-          Passenger name is required
+          El nombre del Usuario es necesario
         </div>
       </div>
 
       <div>
-        Passenger ID:
+        usuario ID:
         <input
           type="number"
           name="id"
@@ -31,7 +31,7 @@ import { Baggage } from '../../models/detalle.interface';
           #id="ngModel"
           [ngModel]="detail?.id">
         <div *ngIf="id.errors?.required && id.dirty" class="error">
-          Passenger ID is required
+          usuario ID is required
         </div>
       </div>
 
@@ -68,21 +68,21 @@ import { Baggage } from '../../models/detalle.interface';
       </div>
 
       <button type="submit" [disabled]="form.invalid">
-        Update passenger
+        Actualizar
       </button>
 
     </form>
   `
 })
-export class PassengerFormComponent {
+export class UsuarioFormComponent {
 
   @Input()
-  detail: Passenger;
+  detail: Usuario;
 
   @Output()
-  update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+  update: EventEmitter<Usuario> = new EventEmitter<Usuario>();
 
-  baggage: Baggage[] = [{
+  baggage: Detalle[] = [{
     key: 'none',
     value: 'No baggage'
   },{
@@ -102,9 +102,9 @@ export class PassengerFormComponent {
     }
   }
 
-  handleSubmit(passenger: Passenger, isValid: boolean) {
+  handleSubmit(usuario: Usuario, isValid: boolean) {
     if (isValid) {
-      this.update.emit(passenger);
+      this.update.emit(usuario);
     }
   }
 

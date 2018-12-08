@@ -12,12 +12,12 @@ import { Usuario } from '../../models/usuario.interface';
       <usuarios-count
         [items]="usuarios">
       </usuarios-count>
-      <div *ngFor="let passenger of usuarios;">
-        {{ passenger.fullname }}
+      <div *ngFor="let usuario of usuarios;">
+        {{ usuario.fullname }}
       </div>
       <usuarios-detail
-        *ngFor="let passenger of usuarios;"
-        [detail]="passenger"
+        *ngFor="let usuario of usuarios;"
+        [detail]="usuario"
         (edit)="handleEdit($event)"
         (remove)="handleRemove($event)">
       </usuarios-detail>
@@ -34,13 +34,13 @@ export class UsuariosDashboardComponent implements OnInit {
   }
   handleEdit(event: Usuario) {
     this.usuariosService
-      .updatePassenger(event)
+      .updateUsuario(event)
       .subscribe((data: Usuario) => {
-        this.usuarios = this.usuarios.map((passenger: Usuario) => {
-          if (passenger.id === event.id) {
-            passenger = Object.assign({}, passenger, event);
+        this.usuarios = this.usuarios.map((usuario: Usuario) => {
+          if (usuario.id === event.id) {
+            usuario = Object.assign({}, usuario, event);
           }
-          return passenger;
+          return usuario;
         });
       });
   }
@@ -48,8 +48,8 @@ export class UsuariosDashboardComponent implements OnInit {
     this.usuariosService
       .removeUsuario(event)
       .subscribe((data: Usuario) => {
-        this.usuarios = this.usuarios.filter((passenger: Usuario) => {
-          return passenger.id !== event.id;
+        this.usuarios = this.usuarios.filter((usuario: Usuario) => {
+          return usuario.id !== event.id;
         });
       });
   }

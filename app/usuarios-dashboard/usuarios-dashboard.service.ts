@@ -28,7 +28,7 @@ export class UsuariosDashboardService {
       .catch((error: any) => Observable.throw(error.json()));
   }
 
-  updatePassenger(passenger: Usuario): Observable<Usuario> {
+  updateUsuario(usuario: Usuario): Observable<Usuario> {
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -36,14 +36,14 @@ export class UsuariosDashboardService {
       headers: headers
     });
     return this.http
-      .put(`${USUARIOS_API}/${passenger.id}`, passenger, options)
+      .put(`${USUARIOS_API}/${usuario.id}`, usuario, options)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json()));
   }
 
-  removeUsuario(passenger: Usuario): Observable<Usuario> {
+  removeUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http
-      .delete(`${USUARIOS_API}/${passenger.id}`)
+      .delete(`${USUARIOS_API}/${usuario.id}`)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

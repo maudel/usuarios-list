@@ -23,7 +23,7 @@ import { Detalle } from '../../models/detalle.interface';
       </div>
 
       <div>
-        Passenger ID:
+        Usuario ID:
         <input
           type="number"
           name="id"
@@ -31,7 +31,7 @@ import { Detalle } from '../../models/detalle.interface';
           #id="ngModel"
           [ngModel]="detail?.id">
         <div *ngIf="id.errors?.required && id.dirty" class="error">
-          Passenger ID is required
+          Usuario ID is required
         </div>
       </div>
 
@@ -62,7 +62,7 @@ import { Detalle } from '../../models/detalle.interface';
       </div>
 
       <button type="submit" [disabled]="form.invalid">
-        Update passenger
+        Update usuario
       </button>
 
     </form>
@@ -96,9 +96,9 @@ export class UsuariosFormComponent {
     }
   }
 
-  handleSubmit(passenger: Usuario, isValid: boolean) {
+  handleSubmit(usuario: Usuario, isValid: boolean) {
     if (isValid) {
-      this.update.emit(passenger);
+      this.update.emit(usuario);
     }
   }
 
