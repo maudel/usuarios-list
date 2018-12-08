@@ -3,5 +3,5 @@ export interface Usuario {
   fullname: string,
   checkedIn: boolean,
   checkInDate?: number,
-  baggage: string
+  detalle: string
 }

@@ -28,7 +28,7 @@ export class UsuariosViewerComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.route.params
-      .switchMap((data: Usuario) => this.usuarioService.getPassenger(data.id))
+      .switchMap((data: Usuario) => this.usuarioService.getUsuario(data.id))
       .subscribe((data: Usuario) => this.usuario = data);
   }
   onUpdatePassenger(event: Usuario) {

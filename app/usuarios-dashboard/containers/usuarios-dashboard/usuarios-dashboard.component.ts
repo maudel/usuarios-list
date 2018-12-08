@@ -46,7 +46,7 @@ export class UsuariosDashboardComponent implements OnInit {
   }
   handleRemove(event: Usuario) {
     this.usuariosService
-      .removePassenger(event)
+      .removeUsuario(event)
       .subscribe((data: Usuario) => {
         this.usuarios = this.usuarios.filter((passenger: Usuario) => {
           return passenger.id !== event.id;

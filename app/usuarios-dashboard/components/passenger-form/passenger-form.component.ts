@@ -1,16 +1,16 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Usuario } from '../../models/usuario.interface';
-import { Detalle } from '../../models/detalle.interface';
+import { Passenger } from '../../models/usuario.interface';
+import { Baggage } from '../../models/detalle.interface';
 
 @Component({
-  selector: 'usuarios-form',
-  styleUrls: ['usuarios-form.component.scss'],
+  selector: 'passenger-form',
+  styleUrls: ['passenger-form.component.scss'],
   template: `
     <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
 
       <div>
-        Usuario name:
+        Passenger name:
         <input
           type="text"
           name="fullname"
@@ -18,7 +18,7 @@ import { Detalle } from '../../models/detalle.interface';
           #fullname="ngModel"
           [ngModel]="detail?.fullname">
         <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
-          Usuario name is required
+          Passenger name is required
         </div>
       </div>
 
@@ -45,17 +45,23 @@ import { Detalle } from '../../models/detalle.interface';
         </label>
       </div>
 
-
+      <div *ngIf="form.value.checkedIn">
+        Check in date:
+        <input
+          type="number"
+          name="checkInDate"
+          [ngModel]="detail?.checkInDate">
+      </div>
 
       <div>
         Luggage:
         <select
-          name="detalle"
-          [ngModel]="detail?.detalle">
+          name="baggage"
+          [ngModel]="detail?.baggage">
           <option
-            *ngFor="let item of detalle"
+            *ngFor="let item of baggage"
             [value]="item.key"
-            [selected]="item.key === detalle?.detalle">
+            [selected]="item.key === detail?.baggage">
             {{ item.value }}
           </option>
         </select>
@@ -68,15 +74,15 @@ import { Detalle } from '../../models/detalle.interface';
     </form>
   `
 })
-export class UsuariosFormComponent {
+export class PassengerFormComponent {
 
   @Input()
-  detail: Usuario;
+  detail: Passenger;
 
   @Output()
-  update: EventEmitter<Usuario> = new EventEmitter<Usuario>();
+  update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
-  detalle: Detalle[] = [{
+  baggage: Baggage[] = [{
     key: 'none',
     value: 'No baggage'
   },{
@@ -96,7 +102,7 @@ export class UsuariosFormComponent {
     }
   }
 
-  handleSubmit(passenger: Usuario, isValid: boolean) {
+  handleSubmit(passenger: Passenger, isValid: boolean) {
     if (isValid) {
       this.update.emit(passenger);
     }
